@@ -1,5 +1,5 @@
 # FIFA World Cup Dashboard
-# Hosted at: https://assignment7.onrender.com
+# Hosted at: https://fifa-dashboard-app.onrender.com
 # Password: N/A
 
 import pandas as pd
