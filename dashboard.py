@@ -18,7 +18,7 @@ win_counts.columns = ['Country', 'Wins']
 
 # initialize app
 app = Dash(__name__)
-
+server = app.server
 app.layout = html.Div([
     html.H1("FIFA World Cup final results dashboard"),
 
