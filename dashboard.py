@@ -1,10 +1,12 @@
 # FIFA World Cup Dashboard
 # Hosted at: https://fifa-dashboard-app.onrender.com
-# Password: N/A
+# Username: admin
+# Password: fifa2025
 
 import pandas as pd
 import plotly.express as px
 from dash import Dash, dcc, html, Input, Output
+import dash_auth  # Import Basic Authentication package
 
 # Step 1: Load dataset for the dashboard
 data_frame = pd.read_csv("dashboard.csv")
@@ -19,6 +21,16 @@ win_data.columns = ['Nation', 'Total_Wins']
 # Step 2: Initialize the Dash web application
 app = Dash(__name__)
 server = app.server
+
+# Step 2: Add Basic Authentication (USERNAME: admin, PASSWORD: fifa2025)
+VALID_CREDENTIALS = {
+    "admin": "fifa2025"
+}
+
+auth = dash_auth.BasicAuth(
+    app,
+    VALID_CREDENTIALS
+)
 
 # Step 2: Define the app layout with interactive elements
 app.layout = html.Div([
@@ -47,11 +59,11 @@ app.layout = html.Div([
     Input('nation_selector', 'value')
 )
 def generate_map(_):
-    # Step 2a: Modify dataset for mapping (England -> United Kingdom for visualization)
+    # Modify dataset for mapping (England -> United Kingdom for visualization)
     map_data = win_data.copy()
     map_data['Mapped_Nation'] = map_data['Nation'].replace({'England': 'United Kingdom'})
 
-    # Step 2a: Create a choropleth map of World Cup winners
+    # Create a choropleth map of World Cup winners
     figure = px.choropleth(map_data,
                            locations='Mapped_Nation',
                            locationmode='country names',
