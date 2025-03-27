@@ -6,7 +6,7 @@
 import pandas as pd
 import plotly.express as px
 from dash import Dash, dcc, html, Input, Output
-import dash_auth  # Import Basic Authentication package
+import dash_auth
 
 # Step 1: Load dataset for the dashboard
 data_frame = pd.read_csv("dashboard.csv")
